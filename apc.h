@@ -17,6 +17,7 @@ typedef struct node
 	struct node *next;
 } Dlist;
 
+// Declaration of function used in this program.
 int creating_LL(Dlist **head, Dlist **tail, char *argv);
 void check(Dlist ***head, int *Flag);
 int add(Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **headR);

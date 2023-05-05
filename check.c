@@ -1,14 +1,17 @@
 #include "apc.h"
 
+// This funciton is used to detect if the given number has + or - sign in it and if its there remove them.
 void check(Dlist ***head, int *Flag)
 {
     if ((**head)->data == '+' || (**head)->data == '-')
     {
+        // If head of data is '-' then make Flag 1.
         if (((**head)->data) == '-')
         {
             *Flag = 1;
         }
 
+        // Update the pointer to next and free head of previous and make it NULL
         **head = (**head)->next;
         free((**head)->prev);
         (**head)->prev = NULL;
