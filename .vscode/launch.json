@@ -5,7 +5,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "/home/isaa/Desktop/ECEP/DS-Project(Arbitrary Precision Calculator)/main",
-            "args": ["2","-","20"],
+            "args": ["2","/","-20"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],

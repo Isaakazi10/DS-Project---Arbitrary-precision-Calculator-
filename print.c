@@ -2,7 +2,7 @@
 
 void print(Dlist *headR)
 {
-    while (headR->next != NULL)
+    while (headR != NULL || headR == NULL)
     {
         if (headR->data == 45)
         {
@@ -13,9 +13,9 @@ void print(Dlist *headR)
 
         printf("%d", (headR)->data);
         headR = headR->next;
-    }
-    if (headR->next == NULL)
-    {
-        printf("%d", (headR)->data);
+        if (headR == NULL)
+        {
+            break;
+        }
     }
 }

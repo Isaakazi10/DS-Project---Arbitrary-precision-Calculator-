@@ -11,16 +11,20 @@
 *******************************************************************************************************************************************************************/
 #include "apc.h"
 
+// add function defination
 int add(Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **headR)
 {
 	// Initialization of variables used in this program.
 	int carry = 0, Flag1 = 0, Flag2 = 0, temp = 0, bism = 0, borrow = 0;
 
+	// Calling check function.
 	check(&head1, &Flag1);
 	check(&head2, &Flag2);
 
+	// If (Flag1 == 1 and Flag2 == 0) or (Flag1 == 0 and Flag2 == 1) then execute if-statement
 	if (((Flag1 == 1) && (Flag2 == 0)) || ((Flag1 == 0) && (Flag2 == 1)))
 	{
+		// Calling big_small Fucntion and if the function returns -1 then store 0 in new_node and return SUCCESSs.
 		bism = big_small(&Flag1, &Flag2, &head1, &tail1, &head2, &tail2);
 		if (bism == -1)
 		{
@@ -33,15 +37,18 @@ int add(Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **head
 		}
 	}
 
-	// While
+	// While tail1 or tail2 is not equal to NULL or tail1 and tail2 is equal to NULL keep running the loop.
 	while ((*tail1 != NULL) || (*tail2 != NULL) || (*tail1 == NULL) && (*tail2 == NULL))
 	{
+		// Creating a new_node to hold the data.
 		Dlist *new_node = malloc(sizeof(Dlist));
 		new_node->prev = NULL;
 		new_node->next = NULL;
 
+		// If (Flag1 == 0 and Flag2 == 0) or (Flag1 == 1 and Flag2 == 1) then execute if-statement else else-statement.
 		if ((Flag1 == 0) && (Flag2 == 0) || ((Flag1 == 1) && (Flag2 == 1)))
 		{
+			// Algorithum for adding the data.
 			if (*tail1 == NULL)
 			{
 				temp = (0 + (*tail2)->data) + carry;
@@ -55,18 +62,21 @@ int add(Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **head
 				temp = ((*tail1)->data + (*tail2)->data) + carry;
 			}
 
+			// If the temp is greater than 9 than make temp lesser than 10 by sub it with 10 and store that in new_node and make carry 1.
 			if (temp > 9)
 			{
 				temp = temp - 10;
 				new_node->data = temp;
 				carry = 1;
 			}
+			// Directly store temp in new_node data and make carry 0;
 			else
 			{
 				new_node->data = temp;
 				carry = 0;
 			}
 
+			// Algorithum for connecting the nodes.
 			if (*headR == NULL)
 			{
 				*headR = new_node;
@@ -79,16 +89,17 @@ int add(Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **head
 				*headR = (*headR)->prev;
 			}
 
+			// Update the node if the node is not equal to NULL
 			if (*tail1 != NULL)
 			{
 				*tail1 = (*tail1)->prev;
 			}
-
 			if (*tail2 != NULL)
 			{
 				*tail2 = (*tail2)->prev;
 			}
 
+			// If both nodes (tail1 and tail2) are equal to NULL then break the loop.
 			if ((*tail1 == NULL) && (*tail2 == NULL))
 			{
 				break;
@@ -96,6 +107,7 @@ int add(Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **head
 		}
 		else
 		{
+			// Algorithum for adding the data.
 			if (*tail1 == NULL)
 			{
 				temp = ((*tail2)->data) - borrow;
@@ -109,18 +121,21 @@ int add(Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **head
 				temp = ((*tail1)->data - (*tail2)->data) - borrow;
 			}
 
+			// If the temp is lesser than 0 than make temp greater than 10 by adding it with 10 and store that in new_node and make borrow 1.
 			if (temp < 0)
 			{
 				temp = temp + 10;
 				new_node->data = temp;
 				borrow = 1;
 			}
+			// Directly store temp in new_node data and make borrow 0;
 			else
 			{
 				new_node->data = temp;
 				borrow = 0;
 			}
 
+			// Algorithum for connecting the nodes.
 			if (*headR == NULL)
 			{
 				*headR = new_node;
@@ -133,16 +148,17 @@ int add(Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **head
 				*headR = (*headR)->prev;
 			}
 
+			// Update the node if the node is not equal to NULL
 			if (*tail1 != NULL)
 			{
 				*tail1 = (*tail1)->prev;
 			}
-
 			if (*tail2 != NULL)
 			{
 				*tail2 = (*tail2)->prev;
 			}
 
+			// If both nodes (tail1 and tail2) are equal to NULL then break the loop.
 			if ((*tail1 == NULL) && (*tail2 == NULL))
 			{
 				break;
@@ -150,6 +166,7 @@ int add(Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **head
 		}
 	}
 
+	// if tail1 and tail2 is equal to NULL and carry is equal to 1 then store that carry in new_node.
 	if (((*tail1 == NULL) && (*tail2 == NULL)) && (carry == 1))
 	{
 		Dlist *new_node = malloc(sizeof(Dlist));
@@ -159,8 +176,14 @@ int add(Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **head
 		*headR = (*headR)->prev;
 	}
 
-	if ((Flag1 == 1) && (Flag2 == 1))
+	// If Flag1 and Flag2 is equal to 1 or Flag1 and Flag2 is equal to 0 then add '-' to new node.
+	if ((Flag1 == 1) && (Flag2 == 1) || ((Flag1 == 1) && (Flag2 == 0)))
 	{
+		if ((*headR)->data == 0)
+		{
+			return SUCCESS;
+		}
+
 		Dlist *new_node = malloc(sizeof(Dlist));
 		new_node->prev = NULL;
 		new_node->data = '-';
@@ -168,18 +191,7 @@ int add(Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **head
 		(*headR)->prev = new_node;
 		*headR = (*headR)->prev;
 	}
-	else if (((Flag1 == 1) && (Flag2 == 0)) || ((Flag1 == 0) && (Flag2 == 1)))
-	{
-		if (Flag1 == 1)
-		{
-			Dlist *new_node = malloc(sizeof(Dlist));
-			new_node->prev = NULL;
-			new_node->data = '-';
-			new_node->next = *headR;
-			(*headR)->prev = new_node;
-			*headR = (*headR)->prev;
-		}
-	}
 
+	// Return SUCCESS.
 	return SUCCESS;
 }

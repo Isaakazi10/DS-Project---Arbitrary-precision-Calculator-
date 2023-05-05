@@ -197,6 +197,11 @@ int mul(Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **head
 	}
 	if (((Flag1 == 1) && (Flag2 == 0)) || ((Flag1 == 0) && (Flag2 == 1)))
 	{
+		if ((*headR)->data == 0)
+		{
+			return SUCCESS;
+		}
+
 		Dlist *new_node = malloc(sizeof(Dlist));
 		new_node->data = '-';
 		new_node->next = *headR;

@@ -144,7 +144,12 @@ int divi(Dlist **head1, Dlist **tail1, Dlist **head2, Dlist **tail2, Dlist **hea
 	}
 	else
 	{
-		printf("-%d\n", count);
+		if (count == 0)
+		{
+			printf("%d\n", count);
+		}
+		else
+			printf("-%d\n", count);
 	}
 	return SUCCESS;
 }
