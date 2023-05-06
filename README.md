@@ -1,6 +1,6 @@
----------------------------------------------------------------INTRODUCTION-------------------------------------------------------------------------
+------------------------------------------------------------INTRODUCTION------------------------------------------------------------------------
 
-    Arbitrary-precision arithmetic, also called big-num arithmetic, multiple precision arithmetic, or sometimes infinite-precision arithmetic, indicates that calculations are performed on numbers whose digits of precision are limited only by the available memory of the host system. This contrasts with the faster fixed-precision arithmetic found in most arithmetic logic unit (ALU) hardware, which typically offers between 8 and 64 bits of precision.
+Arbitrary-precision arithmetic, also called big-num arithmetic, multiple precision arithmetic, or sometimes infinite-precision arithmetic, indicates that calculations are performed on numbers whose digits of precision are limited only by the available memory of the host system. This contrasts with the faster fixed-precision arithmetic found in most arithmetic logic unit (ALU) hardware, which typically offers between 8 and 64 bits of precision.
 
 Some example applications include:
 
@@ -22,7 +22,7 @@ If Num1 = 0 and Num2 = x, then directly print Num2 as output.
 If Num1 = x and Num2 = 0, then directly print Num1 as output.
 If Num1 = 0 and Num2 = 0, then directly print 0 as output
 
----------------------------------------------------REQUIRMENT DETAILS-------------------------------------------------
+--------------------------------------------------------REQUIRMENT DETAILS------------------------------------------------------
 
 1. User will enter two big numbers along with the operator in the terminal, say x+y, where x and y are very large numbers and + is the operation that need to be performed.
 
